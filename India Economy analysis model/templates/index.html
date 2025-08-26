@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>India GDP Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+<body>
+    <header>
+        <h1>India Economy Growth Analysis</h1>
+        <div class="menu-icon" onclick="dash()">&#9776;
+        </div>
+        <div class="overlay">
+             <ul>
+                <li style="padding-top: 25px;"><a href="#" onclick="dash()">Dashboard</a></li>
+                <li style="padding-top: 15px;"><a href="{{ url_for('prediction') }}">Prdiction</a></li>
+            </ul>
+        </div>
+    </header>   
+    <main class="dashboard">
+        <section class="card-s">
+            <div class="image-block">
+                <h3>GDP Growth (Polynomial Regression)</h3>
+                <img src="{{ url_for('static', filename=plot_gdp) }}" alt="GDP Plot">
+            </div>
+        </section>
+        <section class="card">
+            <div class="image-block">
+                <h3>Manufacturing</h3>
+                <img src="{{ url_for('static', filename=plot_manu) }}" alt="Manufacturing Plot">
+            </div>
+        </section>
+        <section class="card">
+            <div class="image-block">
+                <h3>Exports</h3>
+                <img src="{{ url_for('static', filename=plot_expo) }}" alt="Exports Plot">
+            </div>
+        </section>
+        <section class="card">
+            <div class="image-block">
+                <h3>Imports</h3>
+                <img src="{{ url_for('static', filename=plot_impo) }}" alt="Imports Plot">
+            </div>
+        </section>
+        <section class="card">
+            <div class="image-block">
+                <h3>Inflation</h3>
+                <img src="{{ url_for('static', filename=plot_infla) }}" alt="Inflation Plot">
+            </div>>
+        </section>
+        <section class="card">
+            <div class="image-block">
+                <h3>Population Prediction</h3>
+                <img src="{{ url_for('static', filename=plot_pop) }}" alt="Population Plot">
+            </div>
+        </section>
+    </main>
+       <script>
+    function dash() {
+        const overlay = document.querySelector('.overlay');
+        const dashboard=document.querySelector('.dashboard');
+        overlay.style.display = (overlay.style.display === 'block') ? 'none' : 'block';
+        dashboard.style.opacity = (overlay.style.display === 'block') ? "0.2" : "1";
+
+    }
+</script>
+</body>
+</html>

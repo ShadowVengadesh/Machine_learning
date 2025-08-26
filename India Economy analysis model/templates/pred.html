@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>India Economy Growth Analysis</h1>
+        <div class="menu-icon" onclick="dash()">&#9776;
+        </div>
+        <div class="overlay">
+             <ul>
+                <li style="padding-top: 25px;"><a href="{{ url_for('index') }}">Dashboard</a></li>
+                <li style="padding-top: 15px;"><a href="{{ url_for('prediction') }}">Prdiction</a></li>
+            </ul>
+        </div>
+    </header>
+    <main class="dashboard">
+<form method="POST">
+    <label for="Year">Year</label>
+    <input type="text" name="year" id="year" placeholder="Enter the Year">
+    <button type="submit" style="margin-top:10px;">Predict</button>
+
+    <label for="Prediction">Prediction</label>
+    <div id="result-box-1" style="border: 1px solid #ccc; padding: 10px; margin-top: 1px; width: 300px;">
+       {% if gdp %}
+    {{ gdp }}  billion
+{% else %}
+    Result will be shown here.
+{% endif %}
+    </div>
+
+    <label for="Population">Population</label>
+    <div id="result-box-2" style="border: 1px solid #ccc; padding: 10px; margin-top: 1px; width: 300px;">
+        {% if pop %}
+    {{ pop }}
+{% else %}
+    Result will be shown here.
+{% endif %}
+    </div>
+</form>
+
+
+    </main>
+<script>
+    function dash() {
+        const overlay = document.querySelector('.overlay');
+        const dashboard=document.querySelector('.dashboard');
+        overlay.style.display = (overlay.style.display === 'block') ? 'none' : 'block';
+        dashboard.style.opacity = (overlay.style.display === 'block') ? "0.2" : "1";
+
+    }
+    function onSubmit(event){
+        event.preventDefault();
+        document.getElementById('result-box-1').innerText='{{gdp}}';
+    }
+</script>
+</body>
+</html>
